@@ -1,0 +1,1 @@
+a:5:{s:4:"a_id";s:1:"1";s:10:"a_username";s:5:"admin";s:10:"a_password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:13:"a_last_log_ip";s:0:"";s:15:"a_last_log_time";s:1:"1";}

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ESHOP 管理中心 - 商品列表 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#page-table #str_page{
+  color:red;
+}
+</style>
+<script type="text/javascript">
+  //单击事件
+  function change(d){
+    //获取当前img标签的src属性值
+    var value = d.src;
+
+    //判断yes或者no是否在字符串中存在
+    if(value.match('yes')){
+      d.src = 'images/no.gif';
+    }else{
+      d.src = 'images/yes.gif';
+    }
+  }
+</script>
+
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="goods.php?act=add">添加商品</a></span>
+<span class="action-span1"><a href="">ESHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品列表 </span>
+<div style="clear:both"></div>
+</h1>
+
+<form method="post" action="" name="listForm">
+
+<div class="list-div" id="listDiv">
+
+<table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+  <tr>
+    <th>编号</th>
+    <th>商品名称</th>
+    <th>货号</th>
+    <th>价格</th>
+    <th>上架</th>
+    <th>精品</th>
+    <th>新品</th>
+    <th>热销</th>
+    <th>排序</th>
+    <th>库存</th>
+    <th>缩略图</th>
+    <th>操作</th>
+  </tr>
+
+  <?php 
+    $i = 0;
+    //循环遍历所有的商品信息
+    foreach($lists as $list):
+  ?>
+  <tr align="center" class="0" id="0_6">
+    <td align="left" class="first-cell" ><?php echo ++$i;?></td>
+    <td><?php echo $list['g_name'];?></td>
+    <td><?php echo $list['g_sn'];?></td>
+    <td><?php echo $list['g_price'];?></td>
+    <td><img src="images/<?php echo $list['g_is_sale'] ? 'yes' : 'no';?>.gif" onclick="change(this)" /></td>
+    <td><img src="images/<?php echo $list['g_is_pro'] ? 'yes' : 'no';?>.gif"/></td>
+    <td><img src="images/<?php echo $list['g_is_new'] ? 'yes' : 'no';?>.gif"/></td>
+    <td><img src="images/<?php echo $list['g_is_hot'] ? 'yes' : 'no';?>.gif"/></td>
+    <td><?php echo $list['g_sort'];?></td>
+    <td><?php echo $list['g_inv'];?></td>
+<!--     <td><img src="" /></td>
+    <td><img src="" /></td>
+    <td><img src="" /></td>
+    <td><img src="" /></td>
+    <td></td> -->
+    <!-- <td align="right"></td> -->
+
+    <!--缩略图-->
+    <td><img src="<?php echo __ADMIN__ . '/' . $list['g_thumb_img']; ?>"></td>
+
+    <td width="24%" align="center">
+      <a href="" title="编辑">编辑</a> |
+      <a href="goods.php?act=remove&id=<?php echo $list['g_id'];?>" title="移除" onclick="return confirm('你确定要将商品 <?php echo $list['g_name'];?> 放入回收站么？');">移除</a>
+    </td>
+  </tr>
+  <?php endforeach;?>
+  </table>
+
+  <table cellspacing="0" id="page-table">
+  <tr>
+    <td nowrap="true" align="right" style="background-color: rgb(255, 255, 255);">
+    <?php echo $page; ?>
+    </td>
+  </tr>
+</table>
+
+</div>
+</form>
+
+
+<div id="footer">
+
+版权所有 &copy; 2012-2014 传智播客 - PHP培训 - class</div>
+
+</div>
+
+</body>
+</html>
+
+
